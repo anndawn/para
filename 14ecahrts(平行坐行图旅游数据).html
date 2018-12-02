@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0; padding: 0;
+        }
+    </style>
+    <script src="js/echarts.js"></script>
+</head>
+<body>
+<!--(1).定义画布-->
+<div id="echarts" style="position: absolute; width: 100%; height: 100%; background-color: aqua;"></div>
+<!--(2).找到区域区，初始化echarts-->
+<script>
+    function drawparallel(){
+    var myecharts=echarts.init(document.getElementById('echarts'));
+    var options={
+        parallelAxis: [
+            {dim:0,name:"Province",type:"category"},
+            {dim:1,name:"Price"},
+            {dim:2,name:"Traffic"},
+            {dim:3,name:"Hygiene"},
+            {dim:4,name:"Safety"},
+            {dim:5,name:"Environment"},
+            {dim:6,name:"Shopping"},
+            {dim:7,name:"Service"},
+            {dim:8,name:"Tourism"},
+            {dim:9,name:"Amount of comment"}
+        ],
+        parallel: {
+            left: '5%',
+            right: '18%',
+            bottom: 100,
+            parallelAxisDefault: {
+                type: 'value',
+                name: 'AQI指数',
+                nameLocation: 'start',
+                nameGap: 20,
+                nameTextStyle: {
+                    color: '#e46a6a',
+                    fontSize: 12
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#aaa',
+
+                    }
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#777'
+                    }
+                },
+                splitLine: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                }
+            }
+        },
+        backgroundColor: '#333',
+        visualMap: {
+            show: true,
+            min: -1,
+            max: 1,
+            dimension: 4,
+            inRange: {
+                color: ['#d94e5d','#eac736','#50a3ba'].reverse(),
+                // colorAlpha: [0, 1]
+            }
+        },
+        series: {
+            type: 'parallel',
+            lineStyle: {
+                width: 1,
+                opacity: 0.5
+            },
+            data:[
+                ['Shanghai',0.427188,0.729477,0.050228,0.758953,-0.009066,-0.18232,0.704228,0.461067,41610],
+                ['Yunan',-0.135402,0.692918,0.580596,0.090909,0.612465,-0.212121,0.692382,0.737128,60042],
+                ['Jiangsu',-0.025402,0.22918,0.220596,0.350909,0.342465,-0.032121,0.322382,0.557128,20042],
+                ['Zhejiang',0.1885402,0.42918,0.450596,0.24909,0.542465,-0.1521,0.552382,0.327128,50042],
+                ['Shanxi',-0.345402,0.32918,0.680596,0.190909,0.212465,-0.102121,0.372382,0.67128,30042]
+
+              ]
+        }
+    };
+
+    //是一堆JSON
+    //（3）.把配置项设置上
+    myecharts.setOption(options);
+    }
+    drawparallel();
+</script>
+</body>
+</html>
